@@ -37,7 +37,9 @@ return [
         [
             "info" => "Sample controller.",
             "mount" => "controller",
-            "handler" => "\Anax\Controller\SampleController",
+            // "handler" => "\Anax\Controller\SampleController",
+            "path" => "{dataset:alphanum}",
+            "handler" => ["remController", "getDataset"],
         ],
         [
             "info" => "Sample controller app style.",

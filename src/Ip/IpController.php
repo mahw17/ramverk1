@@ -1,6 +1,6 @@
 <?php
 
-namespace Mahw17\Controller;
+namespace Mahw17\Ip;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
@@ -11,6 +11,9 @@ use Anax\Commons\ContainerInjectableTrait;
 class IpController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
+
+
+    // Create and configure new db-object
 
     /**
      * Display the about page.
@@ -23,15 +26,20 @@ class IpController implements ContainerInjectableInterface
         // Load framework services
         $page = $this->di->get("page");
         $session = $this->di->get("session");
+        $ipObj = $this->di->get("ip");
 
         // Set navbar active
         $session->set('navbar', 'ip');
 
         // Collect data
+        // $ipObj = new \Mahw17\Ip\Ip();
+        $currentIp = $ipObj->getIpAddress();
+
         $data = [
             "title" => "IP | ramverk1",
-            "intro_mount" => 'IP-validering',
-            "intro_path" => 'formulär'
+            "intro_mount"   => 'IP-validering',
+            "intro_path"    => 'formulär',
+            "currentIp"     => $currentIp
         ];
 
         // Add and render views
@@ -51,12 +59,13 @@ class IpController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $request = $this->di->get("request");
         $session = $this->di->get("session");
+        $ipValidation = $this->di->get("ip");
 
         // Get ip-adress
         $ipAddress = $request->getPost('ip', null);
 
-        // Verify ip
-        $ipValidation = new \Mahw17\Ip\Ip;
+        // Collect data
+        // $ipValidation = new \Mahw17\Ip\Ip();
         $results = $ipValidation->validateIp($ipAddress);
 
         // Set navbar active

@@ -58,7 +58,9 @@ class SampleController implements ContainerInjectableInterface
     {
         // Deal with the action and return a response.
         return __METHOD__ . ", \$db is {$this->db}";
+
     }
+
 
 
 

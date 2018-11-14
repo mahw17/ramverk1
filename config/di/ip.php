@@ -5,19 +5,19 @@
 return [
     // Services to add to the container.
     "services" => [
-        "db" => [
+        "ip" => [
             "shared" => true,
             "callback" => function () {
 
                 // Load the configuration files
                 $cfg = $this->get("configuration");
-                $config = $cfg->load("database.php");
+                $config = $cfg->load("apikey.php");
                 $config = $config["config"] ?? null;
 
-                // Create and configure new db-object
-                $db = new \Anax\Database\Database($config);
+                // Create and configure new ip-object
+                $ip = new \Mahw17\IP\Ip($config);
 
-                return $db;
+                return $ip;
             }
         ],
     ],

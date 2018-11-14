@@ -7,7 +7,7 @@ return [
         [
             "info" => "Validate IP.",
             "mount" => "ip",
-            "handler" => "\Mahw17\Controller\IpController",
+            "handler" => "\Mahw17\Ip\IpController",
         ]
     ]
 ];

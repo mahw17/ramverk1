@@ -7,7 +7,8 @@ return [
 
     // Default settings are read from files
     "dataset" => [
-        ANAX_APP_PATH . "/config/remserver/users.json"
+        ANAX_INSTALL_PATH . "/config/remserver/users.json"
+        // __DIR__ . "/remserver/users.json"
     ]
 
 ];

@@ -71,13 +71,22 @@ class JsonController implements ContainerInjectableInterface
      */
     public function ipActionGet($ipAddress = '194.103.20.10') : array
     {
-        // Verify ip
-        $ipValidation = new \Mahw17\Ip\Ip;
+        // Load framework services
+        $ipValidation = $this->di->get("ip");
+
+        // Collect data
+        // $ipValidation = new \Mahw17\Ip\Ip();
         $results = $ipValidation->validateIp($ipAddress);
+
+        $info = null;
+        if ($results['valid']) {
+            $info = $ipValidation->ipInfo($ipAddress);
+        }
 
         // Deal with the action and return a response.
         $json = [
             'data' => $results,
+            'info' => $info,
         ];
         return [$json];
     }

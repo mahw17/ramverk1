@@ -3,5 +3,6 @@
 /build
 /vendor
 config/database.php
+config/apikey.php
 memory::
 composer.lock

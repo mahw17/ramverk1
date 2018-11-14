@@ -22,16 +22,6 @@ class User implements ContainerInjectableInterface
 
 
     /**
-     * Constructor to initiate the User object
-     *
-     *
-     */
-    public function __construct()
-    {
-        $this->getUsers();
-    }
-
-    /**
      * Fetch user information from db and create private key value array
      *
      *

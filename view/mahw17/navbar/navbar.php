@@ -12,10 +12,9 @@ namespace Anax\View;
 //     $navbar = 'report';
 // };
 
-
-$navbar = $this->di->get("session")->get('navbar', 'home');
-
-$login = false; //$app->session->has('user', false);
+$session    = $this->di->get("session");
+$navbar     = $session->get('navbar', 'home');
+$login      = $session->has('user', false);
 
 ?>
 
@@ -48,11 +47,11 @@ $login = false; //$app->session->has('user', false);
         <li class ="<?= $navbar == 'api' ? 'active' : ''; ?>">
             <a href="<?= url("api") ?>"><i class="icon-exchange"></i> API </a>
         </li>
-        <!-- <li class="dropdown <?= $navbar == 'login' ? 'active' : ''; ?>">
-          <a href="<?= url("login") ?>"><i class="icon-user" style="color:<?= $login ? 'green' : 'red' ?>"></i></a>
+        <li class="dropdown <?= $navbar == 'login' ? 'active' : ''; ?>">
+          <a href="<?= url("user/login") ?>"><i class="icon-user" style="color:<?= $login ? 'green' : 'red' ?>"></i></a>
           <ul class="dropdown-menu">
-                <?= !$login ? "<li><a href=".url("login").">Logga in</a></li>" : "<li><a href=".url("logout").">Logga ut</a></li>" ?>
+                <?= !$login ? "<li><a href=".url("user/login").">Logga in</a></li>" : "<li><a href=".url("user/logout").">Logga ut</a></li>" ?>
           </ul>
-        </li> -->
+        </li>
       </ul>
 </navbar>
