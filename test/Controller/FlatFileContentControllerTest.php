@@ -44,12 +44,11 @@ class FlatFileContentControllerTest extends TestCase
      */
     public function testIndexAction()
     {
-        // $this->setUp();
         $res = $this->controller->catchAll();
         $this->assertInstanceOf("\Anax\Response\Response", $res);
 
         $body = $res->getBody();
-        $exp = "| Ramverk1";
+        $exp = "ramverk1";
         $this->assertContains($exp, $body);
     }
 }

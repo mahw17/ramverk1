@@ -126,7 +126,7 @@ namespace Anax\View;
 <?php endif; ?>
 
 
-<!-- footer -->
+
 <?php if (regionHasContent("footer")) : ?>
     <!-- Footer
  ================================================== -->

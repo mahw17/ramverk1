@@ -3,7 +3,7 @@
 namespace Mahw17\Ip;
 
 /**
- * To ease rendering a page consisting of several views.
+ * Ip class, validates and get info about a specific IP
  */
 class Ip
 {
@@ -21,7 +21,7 @@ class Ip
     /**
      * Constructor fetching api key and api url from specific supplier.
      *
-     * @param array $options containing details for connecting to the database.
+     * @param array $config containing details for connecting to the supplier API.
      */
     public function __construct($config)
     {
@@ -30,9 +30,9 @@ class Ip
     }
 
     /**
-     * Set the view to be used for the layout.
+     * Validate ip address
      *
-     * @param array $view configuration to create up the view.
+     * @param int $ipAddress ip address to validte.
      *
      * @return $this
      */
@@ -68,11 +68,11 @@ class Ip
     }
 
     /**
-     * Set the view to be used for the layout.
+     * Fetch ip information
      *
-     * @param array $view configuration to create up the view.
+     * @param string $ipAddress
      *
-     * @return $this
+     * @return array
      */
     public function ipInfo($ipAddress)
     {
@@ -88,20 +88,16 @@ class Ip
     }
 
     /**
-     * Set the view to be used for the layout.
+     * Get user ip-adress.
      *
-     * @param array $view configuration to create up the view.
-     *
-     * @return $this
+     * @return string ip-address
      */
     public function getIpAddress()
     {
         foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key) {
+        // foreach (array('REMOTE_ADDR', 'HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED') as $key) {
             if (array_key_exists($key, $_SERVER) === true) {
-                foreach (explode(',', $_SERVER[$key]) as $ip) {
-                    $ip = trim($ip); // just to be safe
-                    return $ip;
-                }
+                    return $_SERVER[$key];
             }
         }
     }

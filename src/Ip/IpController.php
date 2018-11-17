@@ -32,7 +32,6 @@ class IpController implements ContainerInjectableInterface
         $session->set('navbar', 'ip');
 
         // Collect data
-        // $ipObj = new \Mahw17\Ip\Ip();
         $currentIp = $ipObj->getIpAddress();
 
         $data = [
@@ -65,8 +64,12 @@ class IpController implements ContainerInjectableInterface
         $ipAddress = $request->getPost('ip', null);
 
         // Collect data
-        // $ipValidation = new \Mahw17\Ip\Ip();
         $results = $ipValidation->validateIp($ipAddress);
+
+        $info = null;
+        if ($results['valid']) {
+            $info = $ipValidation->ipInfo($ipAddress);
+        }
 
         // Set navbar active
         $session->set('navbar', 'ip');
@@ -77,9 +80,8 @@ class IpController implements ContainerInjectableInterface
             "intro_mount" => 'IP-validering',
             "intro_path" => 'resultat',
             "ip" => $ipAddress,
-            "valid" => $results['valid'],
-            "ipType" => $results['ipType'],
-            "hostname" => $results['hostname']
+            "results" => $results,
+            "info" => $info
         ];
 
         // Add and render views

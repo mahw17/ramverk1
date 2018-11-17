@@ -6,37 +6,62 @@ use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the SampleController.
+ * Test the User class.
  */
 class IpTest extends TestCase
 {
+    // Create the di container.
+    protected $di;
+    protected $ipObj;
+
+
     /**
-     * Test the route "index".
+     * Prepare before each test.
+     */
+    protected function setUp()
+    {
+        global $di;
+
+        // Setup di
+        $this->di = new DIFactoryConfig();
+        $this->di->loadServices(ANAX_INSTALL_PATH . "/config/di");
+
+        // View helpers uses the global $di so it needs its value
+        $di = $this->di;
+
+        // Load the configuration files
+        $cfg = $this->di->get("configuration");
+        $config = $cfg->load("apikey.php");
+        $config = $config["config"] ?? null;
+
+        // Create and configure new ip-object
+        $this->ipObj = new \Mahw17\IP\Ip($config);
+    }
+
+    /**
+     * Test the method testValidateIpV4.
      */
     public function testValidateIpV4()
     {
-        $obj = new Ip();
-        $res = $obj->validateIp('194.103.20.10');
+        $res = $this->ipObj->validateIp('194.103.20.10');
         $this->assertContains("kjell", $res['hostname']);
     }
 
     /**
-     * Test the route "index".
+     * Test the method testValidateIpV6.
      */
     public function testValidateIpV6()
     {
-        $obj = new Ip();
-        $res = $obj->validateIp('2001:6b0:1::200');
+        $res = $this->ipObj->validateIp('2001:6b0:1::200');
         $this->assertContains("kth", $res['hostname']);
     }
 
     /**
-     * Test the route "index".
+     * Test the method testValidateIpNok
      */
     public function testValidateIpNok()
     {
-        $obj = new Ip();
-        $res = $obj->validateIp('194.103.20.A');
+        $res = $this->ipObj->validateIp('194.103.20.A');
         $this->assertFalse($res['valid']);
     }
 }

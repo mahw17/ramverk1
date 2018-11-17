@@ -6,13 +6,10 @@ namespace Anax\View;
  * Template file to render a view.
  */
 
-// Show incoming variables and view helper functions
-//echo showEnvironment(get_defined_vars(), get_defined_functions());
-// if (!isset($navbar)) {
-//     $navbar = 'report';
-// };
-
+// Get framework
 $session    = $this->di->get("session");
+
+// Get session variables
 $navbar     = $session->get('navbar', 'home');
 $login      = $session->has('user', false);
 

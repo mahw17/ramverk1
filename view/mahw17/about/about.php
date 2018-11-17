@@ -11,8 +11,7 @@ namespace Anax\View;
 
 ?>
 
-    <!-- <section id="maincontent">
-      <div class="container"> -->
+
         <div class="row">
           <div class="span12">
             <h2>Om kursen Ramverk1</h2>
@@ -21,6 +20,7 @@ namespace Anax\View;
         </div>
         <div class="row">
           <div class="span6">
+
             <!-- start: Accordion -->
             <div class="accordion" id="accordion2">
               <div class="accordion-group">
@@ -67,12 +67,11 @@ namespace Anax\View;
               </div>
             </div>
             <!--end: Accordion -->
+
           </div>
           <div class="span6">
             <div class="centered">
               <img src="assets/lib/img/dummies/about-img1.png" alt="" />
             </div>
           </div>
-        </div>
-      <!-- </div>
-    </section> -->
+    </div>

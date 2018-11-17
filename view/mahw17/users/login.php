@@ -26,7 +26,6 @@ namespace Anax\View;
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Lösenord" name="password" type="password" value="">
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block" name="login" value="Logga in">Logga in</a>
                             </fieldset>
                         </form>

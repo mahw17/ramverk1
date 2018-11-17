@@ -6,14 +6,8 @@ namespace Anax\View;
  * Template file to render a view.
  */
 
-// Show incoming variables and view helper functions
-//echo showEnvironment(get_defined_vars(), get_defined_functions());
-
 ?>
 
-
-
-<!-- Place somewhere in the <body> of your page -->
 <div id="mainslider" class="flexslider">
   <ul class="slides">
     <li data-thumb="assets/lib/img/slides/flexslider/img1.jpg">

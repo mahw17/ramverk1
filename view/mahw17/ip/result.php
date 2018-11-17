@@ -6,23 +6,26 @@ namespace Anax\View;
  * Template file to render a view.
  */
 
-// Show incoming variables and view helper functions
-//echo showEnvironment(get_defined_vars(), get_defined_functions());
-
 ?>
 
       <div class="container">
         <div class="row">
           <div class="span12">
               <h1>Result</h1>
+                <?php if ($results["valid"]) : ?>
+                  <p>IP-address <b><?= $ip ?></b> is valid according to class <?= $results["ipType"] ?>.</p>
+                  <p><?= null !== $results["hostname"] ? 'Hostname: ' . $results["hostname"] : null ?></p>
 
-                <?php if ($valid) : ?>
-                  <p>IP-address <?= $ip ?> is valid according to class <?= $ipType ?>.</p>
-                  <p><?= null !== $hostname ? 'Hostname is: ' . $hostname : null ?></p>
+                  <p>Latitude:  <?= $info->latitude ?></p>
+                  <p>Longitude:  <?= $info->longitude ?></p>
+                  <p><?= null !== $info->city ? 'City: ' . $info->city : null ?></p>
+
+                  <a onclick="ipMap.initMap(<?= $info->latitude ?>, <?= $info->longitude ?>)" class="btn btn-primary">Kartvy</a>
                 <?php else : ?>
                   <p>IP-address <?= $ip ?> is not valid.</p>
                 <?php endif; ?>
 
-              <br><a href="<?= url("ip") ?>">Tillbaka</a>
+                <a href="<?= url("ip") ?>" class="btn btn-primary">Tillbaka</a>
+              <div id="mapdiv"></div>
           </div>
         </div>

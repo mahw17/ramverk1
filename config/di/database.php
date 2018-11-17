@@ -8,14 +8,15 @@ return [
         "db" => [
             "shared" => true,
             "callback" => function () {
+                $db = new \Anax\Database\Database();
 
                 // Load the configuration files
                 $cfg = $this->get("configuration");
-                $config = $cfg->load("database.php");
-                $config = $config["config"] ?? null;
+                $config = $cfg->load("database");
 
-                // Create and configure new db-object
-                $db = new \Anax\Database\Database($config);
+                // Set the database configuration
+                $connection = $config["config"] ?? [];
+                $db->setOptions($connection);
 
                 return $db;
             }

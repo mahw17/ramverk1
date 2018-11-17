@@ -48,7 +48,7 @@ class UserController implements ContainerInjectableInterface
      * User verification.
      *
      */
-    public function loginActionPost() : object
+    public function loginActionPost()
     {
         // Load framework services
         $request    = $this->di->get("request");
@@ -59,7 +59,7 @@ class UserController implements ContainerInjectableInterface
         $password = $request->getPost('password', null);
 
         // Verify user
-        $userIdentification = new \Mahw17\User\User();
+        $userIdentification = new User();
         $userIdentification->setDI($this->di);
         $userIdentification->getUsers();
         $success  = $userIdentification->loginUser($user, $password);
@@ -67,8 +67,10 @@ class UserController implements ContainerInjectableInterface
         // Redirect
         if ($success === true) {
             $response->redirect("");
+            return true;
         } else {
             $response->redirect("user/login");
+            return false;
         }
     }
 
@@ -81,12 +83,12 @@ class UserController implements ContainerInjectableInterface
         $response   = $this->di->get("response");
 
         // User logout
-        $userIdentification = new \Mahw17\User\User();
+        $userIdentification = new User();
         $userIdentification->setDI($this->di);
         $userIdentification->logoutUser();
 
         // Redirect
         $response->redirect("");
+        return true;
     }
-
 }

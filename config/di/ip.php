@@ -15,7 +15,7 @@ return [
                 $config = $config["config"] ?? null;
 
                 // Create and configure new ip-object
-                $ip = new \Mahw17\IP\Ip($config);
+                $ip = new \Mahw17\Ip\Ip($config);
 
                 return $ip;
             }

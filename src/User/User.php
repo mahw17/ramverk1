@@ -119,5 +119,6 @@ class User implements ContainerInjectableInterface
     public function logoutUser()
     {
         $this->di->get('session')->delete("user");
+        return true;
     }
 }
