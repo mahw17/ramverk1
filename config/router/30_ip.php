@@ -1,6 +1,6 @@
 <?php
 /**
- * Load the about controller.
+ * Load the ip controller.
  */
 return [
     "routes" => [

@@ -6,7 +6,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 
 /**
- * Style chooser controller loads available stylesheets from a directory and
+ * Controller to hanle the About request
  * lets the user choose the stylesheet to use.
  */
 class AboutController implements ContainerInjectableInterface
@@ -16,7 +16,7 @@ class AboutController implements ContainerInjectableInterface
     /**
      * Display the about page.
      *
-     * @return object
+     * @return object to render
      */
     public function indexActionGet() : object
     {
@@ -25,10 +25,10 @@ class AboutController implements ContainerInjectableInterface
         $session->set('navbar', 'about');
 
         $data = [
-            "title" => "OM | ramverk1",
-            "navbar" => 'about',
-            "intro_mount" => 'Om Ramverk1',
-            "intro_path" => 'Om Ramverk1'
+            "title"         => "OM | ramverk1",
+            "navbar"        => 'about',
+            "intro_mount"   => 'Om Ramverk1',
+            "intro_path"    => 'Om Ramverk1'
         ];
 
         $page = $this->di->get("page");

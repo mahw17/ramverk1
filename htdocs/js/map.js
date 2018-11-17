@@ -1,11 +1,10 @@
 /**
- * To show off JS works and can be integrated.
+ * Javascripts functions for render map based on IP-address
  */
 ipMap = (function() {
     "use strict";
-// initMap();
 
-var test = {
+var ipFunctions = {
     "initMap": function (lat=59, lon=18, zoom=10) {
 
     var map = new OpenLayers.Map("mapdiv");
@@ -24,7 +23,5 @@ var test = {
     map.setCenter(lonlat, zoom);
     }
 };
-
-return test;
-
+return ipFunctions;
 })();
