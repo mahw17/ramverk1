@@ -15,7 +15,7 @@ $login      = $session->has('user', false);
 
 ?>
 
-<navbar>
+<nav>
       <ul class="nav topnav">
         <li class="<?= $navbar == 'home' ? 'active' : ''; ?>">
           <a href="<?= url("") ?>"><i class="icon-home"></i> Hem </a>
