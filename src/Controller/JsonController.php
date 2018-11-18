@@ -94,6 +94,53 @@ class JsonController implements ContainerInjectableInterface
 
 
     /**
+     * This is the index method action, it handles:
+     * GET METHOD mountpoint
+     * GET METHOD mountpoint/
+     * GET METHOD mountpoint/index
+     *
+     * @return array
+     */
+    public function weatherforecastActionGet() : array
+    {
+        // Load framework services
+        $weather = $this->di->get("weather");
+
+        // Collect data
+        $results = $weather->weatherForecast();
+
+        // Deal with the action and return a response.
+        $json = [
+            'data' => $results
+        ];
+        return [$json];
+    }
+
+    /**
+     * This is the index method action, it handles:
+     * GET METHOD mountpoint
+     * GET METHOD mountpoint/
+     * GET METHOD mountpoint/index
+     *
+     * @return array
+     */
+    public function weatherhistoryActionGet() : array
+    {
+        // Load framework services
+        $weather = $this->di->get("weather");
+
+        // Collect data
+        $results = $weather->weatherHistory();
+
+        // Deal with the action and return a response.
+        $json = [
+            'data' => $results
+        ];
+        return [$json];
+    }
+
+
+    /**
      * This sample method dumps the content of $di.
      * GET mountpoint/dump-app
      *

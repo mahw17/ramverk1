@@ -25,6 +25,16 @@
 
 div.olControlAttribution { bottom: 3px; }
 
+div.weather_input {
+	float: left;
+	margin-right: 2rem;
+}
+
+div.weather_radio {
+	padding-top: 1rem;
+	margin-bottom: 2rem;
+}
+
 /* ====================================== */
 
 .clear { clear:both; }

@@ -41,6 +41,9 @@ $login      = $session->has('user', false);
         <li class ="<?= $navbar == 'ip' ? 'active' : ''; ?>">
             <a href="<?= url("ip") ?>"><i class="icon-rss"></i> Validera IP-adress </a>
         </li>
+        <li class ="<?= $navbar == 'weather' ? 'active' : ''; ?>">
+            <a href="<?= url("weather") ?>"><i class="icon-umbrella"></i> Väder </a>
+        </li>
         <li class ="<?= $navbar == 'api' ? 'active' : ''; ?>">
             <a href="<?= url("api") ?>"><i class="icon-exchange"></i> API </a>
         </li>
@@ -51,4 +54,4 @@ $login      = $session->has('user', false);
           </ul>
         </li>
       </ul>
-</navbar>
+</nav>

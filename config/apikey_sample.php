@@ -2,16 +2,13 @@
 /**
  * Storage for API keys.
  *
- *
- * Example for ipstack.
- *  "apiKey" => "5edd0fae7daa68eae45685213aa8a",
- *
  */
 
 return [
-    // API KEY for IPSTACk
+    // API KEY for https://ipstack.com/documentation
     'ipstack' => [
-        "apiKey" => "5edd0fae7daa68eae45685213aa8a",
-        "apiUrl" => "http://api.ipstack.com/"
+        "apiKey"        => "novalidapid0fae7daa68eae45685213aa8a",
+        "apiUrl"        => "http://api.ipstack.com/",
+        "apiExample"    => "http://api.ipstack.com/134.201.250.155?access_key=novalidapid0fae7daa68eae45685213aa8a"
     ]
 ];
