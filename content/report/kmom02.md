@@ -40,7 +40,7 @@ Jag valde att kika lite mer på Laravel av den anledningen att det för tillfäl
 
 Det jag reagerade på var att 'upplägget' MVC inte syntes tydligare i mappstrukturen. Finns till exempel en data och en storage mapp för vad jag antar datalagring. Vad kontrollerna ska ligga var inte heller så tydligt.
 
-Hade inte heller föreställt mig att det var en egen variant av PHP, Blade, med en mängd förkortningar av diverse kommandon son till stora delar användes inom ramverket.
+Hade inte heller föreställt mig att det var en egen variant av PHP, Blade, med en mängd förkortningar av diverse kommandon som till stora delar användes inom ramverket.
 
 Ett eget kommandradsverktyg Artisan användes också i hög utsträckning för alla möjliga ändamål, så som att automatskapa CRUD-routes till exempel.
 
