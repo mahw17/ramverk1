@@ -101,13 +101,35 @@ class JsonController implements ContainerInjectableInterface
      *
      * @return array
      */
-    public function weatherforecastActionGet() : array
+    public function weatherforecastActionGet($source = 'ip', $param1 = '194.103.20.10', $param2 = null) : array
     {
         // Load framework services
         $weather = $this->di->get("weather");
 
+
         // Collect data
-        $results = $weather->weatherForecast();
+
+        // Input as IP-address => convert to coordinates
+        if (strtolower($source) === "ip") {
+            // Load framework services
+            $ipValidation = $this->di->get("ip");
+            $results = $ipValidation->validateIp($param1);
+
+            $info = null;
+            if ($results['valid']) {
+                $info = $ipValidation->ipInfo($param1);
+                $param1 = $info->latitude;
+                $param2 = $info->longitude;
+            }
+        }
+
+        $coordinates = [
+            "lat" => $param1,
+            "lon" => $param2
+        ];
+
+
+        $results = $weather->weatherForecast($coordinates);
 
         // Deal with the action and return a response.
         $json = [
@@ -124,7 +146,7 @@ class JsonController implements ContainerInjectableInterface
      *
      * @return array
      */
-    public function weatherhistoryActionGet() : array
+    public function weatherhistoryActionGet($ipAddress = '194.103.20.10') : array
     {
         // Load framework services
         $weather = $this->di->get("weather");

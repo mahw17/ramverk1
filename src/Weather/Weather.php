@@ -67,11 +67,11 @@ class Weather
     {
         // Default value on return attributes
         $stopTime = time();
-        $startTime = time() - (3 * 24 * 60 * 60);
-        while ($stopTime >= $startTime) {
+        // $startTime = time() - (3 * 24 * 60 * 60);
+        // while ($stopTime >= $startTime) {
             $url    = $this->apiUrl . $this->apiKey . '/' . $coordinates["lat"] . "," . $coordinates["lon"] . "," . $stopTime . $this->apiExtension;
-            $stopTime = $stopTime - (24 * 60 * 60);
-        }
+        //     $stopTime = $stopTime - (24 * 60 * 60);
+        // }
 
         // Get response
         $result = file_get_contents($url);
