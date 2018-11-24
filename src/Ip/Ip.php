@@ -68,6 +68,38 @@ class Ip
     }
 
     /**
+     * Validate ip:s coordinates
+     *
+     * @param int $ipAddress ip address to validte.
+     *
+     * @return mixed array if valid or boolean if false
+     */
+    public function validateCoord($ipAddress)
+    {
+        // Validate ip
+        $ipValid = $this->validateIp($ipAddress)['valid'];
+
+        // If valid Ip fetch and verify coordinates
+        if ($ipValid) {
+            $ipInfo = $this->ipInfo($ipAddress);
+
+            if (isset($ipInfo->latitude) && isset($ipInfo->longitude)) {
+                $coordinates = [
+                    "lat" => $ipInfo->latitude,
+                    "lon" => $ipInfo->longitude
+                ];
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return $coordinates;
+    }
+
+
+
+    /**
      * Fetch ip information
      *
      * @param string $ipAddress
@@ -79,8 +111,11 @@ class Ip
         // Default value on return attributes
         $url    = $this->apiUrl . $ipAddress . '?access_key=' . $this->apiKey;
 
+        // Initiate new curl object
+        $curl = new \Mahw17\Curl\Curl();
+
         // Get response
-        $result = file_get_contents($url);
+        $result = $curl->fetchSingleUrl($url);
         $result = json_decode($result);
 
         // Collect and return results

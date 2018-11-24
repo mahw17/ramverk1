@@ -52,35 +52,43 @@ class WeatherController implements ContainerInjectableInterface
      * Retrive posted form.
      *
      */
-    public function indexActionPost() : object
+    public function indexActionPost()
     {
         // Load framework services
         $page = $this->di->get("page");
         $request = $this->di->get("request");
+        $response = $this->di->get("response");
         $session = $this->di->get("session");
         $ipValidation = $this->di->get("ip");
         $weather = $this->di->get("weather");
 
-        // Get IP-address
-        $ipAddress = $request->getPost('ip', null);
+        // Validate coord (from posted)
+        $coord = $request->getPost('coord', null);
+        $coord = $weather->validateCoord($coord);
+
+        // If none valide coords by post check posted ip-address for coords
+        if (!$coord) {
+            $ipAddress = $request->getPost('ip', null);
+            $coord = $ipValidation->validateCoord($ipAddress);
+        }
+
+        // If neither coords by post or thru the ip is valid
+        if (!$coord) {
+            // Error message!
+            $response->redirect("error/weather");
+            return false;
+        }
 
         // Type of data (forecast/history)
         $weaterType = $request->getPost('weather', null);
 
-        // Verify IP-address
-        $results = $ipValidation->validateIp($ipAddress);
-
-        // Fetch API-resultset (if IP is valid)
-        $ipInfo = null;
+        // Fetch API-resultset
         $weatherInfo = null;
-        if ($results['valid']) {
-            $ipInfo = $ipValidation->ipInfo($ipAddress);
-            // Fetch data depending on user input (forecast/history)
-            if ($weaterType === "forecast") {
-                $weatherInfo = $weather->weatherForecast(["lat" => $ipInfo->latitude, "lon" => $ipInfo->longitude]);
-            } else {
-                $weatherInfo = $weather->weatherHistory(["lat" => $ipInfo->latitude, "lon" => $ipInfo->longitude]);
-            }
+        $day = time();
+        if ($weaterType === "forecast") {
+            $weatherInfo = $weather->weatherForecast($coord);
+        } else {
+            $weatherInfo = $weather->weatherHistory($day, $coord);
         }
 
         // Set navbar active
@@ -91,9 +99,6 @@ class WeatherController implements ContainerInjectableInterface
             "title"         => "Väder | ramverk1",
             "intro_mount"   => 'Prognos',
             "intro_path"    => 'resultat',
-            "ip"            => $ipAddress,
-            "results"       => $results,
-            "ipInfo"        => $ipInfo,
             "weatherType"   => $weaterType,
             "weatherInfo"   => $weatherInfo
         ];

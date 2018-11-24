@@ -44,8 +44,17 @@ $login      = $session->has('user', false);
         <li class ="<?= $navbar == 'weather' ? 'active' : ''; ?>">
             <a href="<?= url("weather") ?>"><i class="icon-umbrella"></i> Väder </a>
         </li>
-        <li class ="<?= $navbar == 'api' ? 'active' : ''; ?>">
-            <a href="<?= url("api") ?>"><i class="icon-exchange"></i> API </a>
+        <li class="dropdown <?= $navbar == 'api' ? 'active' : ''; ?>">
+            <a href="<?= url("api") ?>"><i class="icon-exchange"></i> Api <i class="icon-angle-down"></i></a>
+            <ul class="dropdown-menu" style="display: none;">
+                <li><a href="<?= url("api/ip") ?>">Ip</a></li>
+                <li class="dropdown"><a href="#">Väder <i class="icon-angle-right"></i></a>
+                    <ul class="dropdown-menu sub-menu" style="display: none;">
+                        <li><a href="<?= url("api/weather/forecast") ?>">Prognos</a></li>
+                        <li><a href="<?= url("api/weather/history") ?>">Historik</a></li>
+                    </ul>
+                </li>
+            </ul>
         </li>
         <li class="dropdown <?= $navbar == 'login' ? 'active' : ''; ?>">
           <a href="<?= url("user/login") ?>"><i class="icon-user" style="color:<?= $login ? 'green' : 'red' ?>"></i></a>

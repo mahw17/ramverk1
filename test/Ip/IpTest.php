@@ -64,4 +64,31 @@ class IpTest extends TestCase
         $res = $this->ipObj->validateIp('194.103.20.A');
         $this->assertFalse($res['valid']);
     }
+
+    /**
+     * Test the method validateCoordOK.
+     */
+    public function testValidateCoordOk()
+    {
+        $res = $this->ipObj->validateCoord('2001:6b0:1::200');
+        $this->assertEquals(59.3333, $res['lat']);
+    }
+
+    /**
+     * Test the method validateCoord nOK.
+     */
+    public function testValidateCoordNok1()
+    {
+        $res = $this->ipObj->validateCoord('2001:6b0:1::åäö');
+        $this->assertFalse($res);
+    }
+
+    /**
+     * Test the method validateCoord nOK.
+     */
+    public function testValidateCoordNok2()
+    {
+        $res = $this->ipObj->validateCoord('127.0.0.1');
+        $this->assertFalse($res);
+    }
 }

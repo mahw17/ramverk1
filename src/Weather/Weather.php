@@ -48,8 +48,12 @@ class Weather
         // Default value on return attributes
         $url    = $this->apiUrl . $this->apiKey . '/' . $coordinates["lat"] . "," . $coordinates["lon"] . $this->apiExtension;
 
+
+        // Initiate new curl object
+        $curl = new \Mahw17\Curl\Curl();
+
         // Get response
-        $result = file_get_contents($url);
+        $result = $curl->fetchSingleUrl($url);
         $result = json_decode($result);
 
         // Collect and return results
@@ -63,23 +67,55 @@ class Weather
      *
      * @return array
      */
-    public function weatherHistory($coordinates = ["lat" => 57, "lon" => 18])
+    public function weatherHistory($day = 1542818124, $coordinates = ["lat" => 57, "lon" => 18])
     {
-        // Default value on return attributes
-        $stopTime = time();
-        // $startTime = time() - (3 * 24 * 60 * 60);
-        // while ($stopTime >= $startTime) {
-            $url    = $this->apiUrl . $this->apiKey . '/' . $coordinates["lat"] . "," . $coordinates["lon"] . "," . $stopTime . $this->apiExtension;
-        //     $stopTime = $stopTime - (24 * 60 * 60);
-        // }
+        // Create $urlArray
+        $urlArray = array();
+        for ($i=0; $i < 30; $i++) {
+            // Day to collect weather data for
+            $day = $day - 24 * 60 * 60;
+
+            // API url
+            $urlArray[$i] = $this->apiUrl . $this->apiKey . '/' . $coordinates["lat"] . "," . $coordinates["lon"] . "," . $day . $this->apiExtension;
+        }
+
+        // Initiate new curl object
+        $curl = new \Mahw17\Curl\Curl();
 
         // Get response
-        $result = file_get_contents($url);
-        $result = json_decode($result);
+        $result = $curl->fetchMultiUrl($urlArray);
+        // $result = json_decode($result);
 
         // Collect and return results
         return $result;
     }
 
+    /**
+     * Validate coordinates
+     *
+     * @param string coordinates
+     *
+     * @return array with coordinates, false if not valid
+     */
+    public function validateCoord($coordinates)
+    {
+        // Convert string to array
+        $coord = explode(",", $coordinates);
 
+        // Validate coord
+        $coordValid = false;
+        if (isset($coord[0]) && isset($coord[1])) {
+            $coordinates = [
+                "lat" => $coord[0],
+                "lon" => $coord[1]
+            ];
+            $coordValid =  $coordinates["lat"] >= -90 &&
+                            $coordinates["lat"] <= 90 &&
+                            $coordinates["lon"] >= -180 &&
+                            $coordinates["lon"] <= 180
+                            ? true : false;
+        }
+
+        return $coordValid ? $coordinates : false;
+    }
 }

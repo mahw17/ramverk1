@@ -1106,7 +1106,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 225px;
+  width: 275px;
 }
 
 textarea {
@@ -4560,7 +4560,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 1030px;
 }
 
 .navbar-fixed-top {
