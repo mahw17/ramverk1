@@ -73,13 +73,13 @@ class WeatherControllerTest extends TestCase
         $array = [
             "post" => [
                 "coord" => "50,50",
-                "weatherType" => "forecast"
+                "weather" => "forecast"
             ]
         ];
         $this->di->get("request")->setGlobals($array);
         $res = $this->controller->indexActionPost();
         $this->assertContains("Väder | ramverk1", $res->getBody());
-    // }
+    }
 
     /**
      * Test the route "index - post".

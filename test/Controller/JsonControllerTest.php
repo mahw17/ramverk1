@@ -65,6 +65,28 @@ class JsonControllerTest extends TestCase
     }
 
     /**
+     * Test the route "index".
+     */
+    public function testWeatherForecastActionGet()
+    {
+        $res = $this->controller->weatherforecastActionGet();
+
+        $json = $res[0];
+        $this->assertEquals($json["data"]->longitude, 18.056);
+    }
+
+    /**
+     * Test the route "index".
+     */
+    public function testWeatherHistoryActionGet()
+    {
+        $res = $this->controller->weatherhistoryActionGet();
+
+        $json = $res[0];
+        $this->assertEquals($json["data"][0]->longitude, 18.056);
+    }
+
+    /**
      * Test the route "dump-di".
      */
     public function testDumpDiActionGet()
