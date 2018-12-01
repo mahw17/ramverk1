@@ -60,10 +60,6 @@ return [
 
                 // Template Custom JavaScript File
                 "assets/lib/js/custom.js",
-
-                // OpenLayers Javascripts
-                "https://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/lib/OpenLayers.js",
-                "js/map.js"
             ],
         ],
     ],

@@ -38,20 +38,16 @@ $login      = $session->has('user', false);
         <li class ="<?= $navbar == 'tool' ? 'active' : ''; ?>">
             <a href="<?= url("tool") ?>"><i class="icon-wrench"></i> Verktyg </a>
         </li>
-        <li class ="<?= $navbar == 'ip' ? 'active' : ''; ?>">
-            <a href="<?= url("ip") ?>"><i class="icon-rss"></i> Validera IP-adress </a>
-        </li>
         <li class ="<?= $navbar == 'weather' ? 'active' : ''; ?>">
             <a href="<?= url("weather") ?>"><i class="icon-umbrella"></i> Väder </a>
         </li>
         <li class="dropdown <?= $navbar == 'api' ? 'active' : ''; ?>">
-            <a href="<?= url("api") ?>"><i class="icon-exchange"></i> Api <i class="icon-angle-down"></i></a>
+            <a href="<?= url("#") ?>"><i class="icon-exchange"></i> Api <i class="icon-angle-down"></i></a>
             <ul class="dropdown-menu" style="display: none;">
-                <li><a href="<?= url("api/ip") ?>">Ip</a></li>
                 <li class="dropdown"><a href="#">Väder <i class="icon-angle-right"></i></a>
                     <ul class="dropdown-menu sub-menu" style="display: none;">
-                        <li><a href="<?= url("api/weather/forecast") ?>">Prognos</a></li>
-                        <li><a href="<?= url("api/weather/history") ?>">Historik</a></li>
+                        <li><a href="<?= url("api/weatherforecast") ?>">Prognos</a></li>
+                        <li><a href="<?= url("api/weatherhistory") ?>">Historik</a></li>
                     </ul>
                 </li>
             </ul>
