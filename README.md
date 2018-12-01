@@ -9,3 +9,5 @@ KMOM01 -    Setup framework Anax, integrate external design template.
 KMOM02 -    Design patterns, mainly MVC. Introduction to the SOLID principles.
 
 KMOM03 -    Service containers and service providers. Including lazy loading etc..
+
+KMOM4 -     Removed weather-methods/controllers to a composer/packagist package
