@@ -52,6 +52,9 @@ $login      = $session->has('user', false);
                 </li>
             </ul>
         </li>
+        <li class ="<?= $navbar == 'book' ? 'active' : ''; ?>">
+            <a href="<?= url("book") ?>"><i class="icon-book"></i> Böcker </a>
+        </li>
         <li class="dropdown <?= $navbar == 'login' ? 'active' : ''; ?>">
           <a href="<?= url("user/login") ?>"><i class="icon-user" style="color:<?= $login ? 'green' : 'red' ?>"></i></a>
           <ul class="dropdown-menu">

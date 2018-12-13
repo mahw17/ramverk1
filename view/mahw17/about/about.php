@@ -59,7 +59,7 @@ namespace Anax\View;
                 </div>
                 <div id="collapseThree" class="accordion-body collapse">
                   <div class="accordion-inner">
-                      Som designmall valde jag temat <a href="https://dbwebb.se/">Lumia</a> från <a href="https://bootstrapmade.com/">BootstrapMade</a>.
+                      Som designmall valde jag temat <a href="https://bootstrapmade.com/demo/Lumia/">Lumia</a> från <a href="https://bootstrapmade.com/">BootstrapMade</a>.
                       Temat tilltalade mig och hade de regioner/block som jag letade efter, så som ovanliggande navbar, en footer samt att sidan
                       inte var ihophängande utan bestod av fristående sidor.
                   </div>
