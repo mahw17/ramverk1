@@ -13,3 +13,7 @@ KMOM03 -    Service containers and service providers. Including lazy loading etc
 KMOM4 -     Removed weather-methods/controllers to a composer/packagist package
 
 KMOM05 -    Connected Travis and Scrutinizer validators to the weather package.
+
+KMOM06 -    Database active recordds
+
+KMOM10 -    Final project
